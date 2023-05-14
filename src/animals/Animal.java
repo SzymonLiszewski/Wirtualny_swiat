@@ -25,16 +25,45 @@ public abstract class Animal extends Organism {
         if (this.getPosY()+moveY>=this.world.getSizeY() || this.getPosY()+moveY<0){moveY = 0;}
         this.world.moveOrganism(this,moveX,moveY);
     }
+    public abstract void makeCopy(int x, int y, World world);
     @Override
     public String getName(){
         return "A";
     };
-    public void findPlace(){
-        //write function
+    public int findPlace(int x, int y, World world){
+        if (x+1 < world.getSizeX() && world.getOrganism(x+1,y) == null){
+            this.makeCopy(x+1, y, world);
+            return 0;
+        }
+        if (y+1 < world.getSizeY() && world.getOrganism(x,y+1) == null){
+            this.makeCopy(x, y+1, world);
+            return 0;
+        }
+        if (x-1>=0 && world.getOrganism(x-1,y) == null){
+            this.makeCopy(x-1, y, world);
+            return 0;
+        }
+        if (y-1>=0 && world.getOrganism(x,y-1) == null){
+            this.makeCopy(x, y-1, world);
+            return 0;
+        }
+        return -1;
     }
     public void collision(Organism otherOrganism){
         if (this.getName()==otherOrganism.getName()){
-            findPlace();
+            if (findPlace(this.getPosX(),this.getPosY(),this.world)==-1){
+                findPlace(otherOrganism.getPosX(), otherOrganism.getPosY(), this.world);
+            }
+        }
+        else{
+            if(this.getStrength()<=otherOrganism.getStrength()){
+                this.world.printMessage(otherOrganism.getName() + "kills"+this.getName() + "(" + this.getPosX()+", "+this.getPosY()+")", 0);
+                this.world.removeOrganism(this);
+            }
+            else if (this.getStrength()>otherOrganism.getStrength()){
+                this.world.printMessage(this.getName() +  "kills"+otherOrganism.getName() +"(" + this.getPosX()+", "+this.getPosY()+")", 0);
+                this.world.removeOrganism(otherOrganism);
+            }
         }
     }
 }
