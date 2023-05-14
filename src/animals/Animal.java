@@ -29,9 +29,12 @@ public abstract class Animal extends Organism {
     public String getName(){
         return "A";
     };
+    public void findPlace(){
+        //write function
+    }
     public void collision(Organism otherOrganism){
         if (this.getName()==otherOrganism.getName()){
-
+            findPlace();
         }
     }
 }
