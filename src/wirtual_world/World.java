@@ -1,5 +1,6 @@
 package wirtual_world;
 
+import animals.Human;
 import wirtual_world.Organism;
 import graphics.*;
 
@@ -27,9 +28,14 @@ public class World {
             }
         }
     }
-    public void makeTurn(){
+    public void makeTurn(int human_move){
         for (int i=0; i<organisms_ordered.size();i++){
-            organisms_ordered.get(i).action();
+            if (organisms_ordered.get(i).getName()=="Human") {
+                organisms_ordered.get(i).human_action(human_move);
+            }
+            else{
+                organisms_ordered.get(i).action();
+            }
         }
         for (int i=0;i<new_organisms.size();i++){
             this.addOrganism(new_organisms.get(i));

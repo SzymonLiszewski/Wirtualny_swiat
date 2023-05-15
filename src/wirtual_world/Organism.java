@@ -56,4 +56,5 @@ protected World world;
     abstract public void draw();
     abstract public String getName();
     abstract public Color color();
+    public void human_action(int move){};
 }

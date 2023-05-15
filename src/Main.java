@@ -61,7 +61,7 @@ class text extends JFrame implements ActionListener {
             world.newOrganism(new SowThistle(ThreadLocalRandom.current().nextInt(0, x),ThreadLocalRandom.current().nextInt(0, y),world));
             world.newOrganism(new WolfBerries(ThreadLocalRandom.current().nextInt(0, x),ThreadLocalRandom.current().nextInt(0, y),world));
         }
-        world.newOrganism(new Wolf(3,3,world));
+        world.newOrganism(new Human(0,0,world));
 
         world.drawWorld();
 

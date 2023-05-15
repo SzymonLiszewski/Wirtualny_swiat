@@ -36,6 +36,8 @@ public class Screen extends JPanel implements ActionListener, KeyListener, Mouse
                 if (organisms[i][j]!=null) {
                     g.setColor(organisms[i][j].color());
                     g.fillRect(i * 20, j * 20, 20, 20);
+                    g.setColor(Color.BLACK);
+                    g.drawString("😊",i * 20+5, j * 20+15);
                 }
             }
         }
@@ -52,9 +54,17 @@ public class Screen extends JPanel implements ActionListener, KeyListener, Mouse
 
     @Override
     public void keyPressed(KeyEvent e) {
-        System.out.println(e.getKeyCode());
-        if (e.getKeyCode()==38){
-            world.makeTurn();
+        if (e.getKeyCode()==38){//up
+            world.makeTurn(1);
+        }
+        if (e.getKeyCode()==39){//right
+            world.makeTurn(2);
+        }
+        if (e.getKeyCode()==40){//down
+            world.makeTurn(3);
+        }
+        if (e.getKeyCode()==37){//left
+            world.makeTurn(4);
         }
         world.update();
     }
