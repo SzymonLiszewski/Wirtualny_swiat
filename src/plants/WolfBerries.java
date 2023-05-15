@@ -18,5 +18,9 @@ public class WolfBerries extends Plant{
     public Color color() {
         return Color.YELLOW;
     }
+    @Override
+    public String getName() {
+        return "Wolfberries";
+    }
 
 }

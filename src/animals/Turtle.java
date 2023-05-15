@@ -72,4 +72,8 @@ public class Turtle extends Animal{
     public Color color() {
         return Color.GREEN;
     }
+    @Override
+    public String getName() {
+        return "Turtle";
+    }
 }

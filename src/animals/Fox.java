@@ -45,4 +45,8 @@ public class Fox extends Animal{
     public Color color() {
         return null;
     }
+    @Override
+    public String getName() {
+        return "Fox";
+    }
 }

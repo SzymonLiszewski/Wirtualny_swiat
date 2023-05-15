@@ -19,4 +19,8 @@ public class Grass extends Plant{
     public Color color() {
         return Color.DARK_GRAY;
     }
+    @Override
+    public String getName() {
+        return "Grass";
+    }
 }

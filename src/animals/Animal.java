@@ -54,14 +54,17 @@ public abstract class Animal extends Organism {
             if (findPlace(this.getPosX(),this.getPosY(),this.world)==-1){
                 findPlace(otherOrganism.getPosX(), otherOrganism.getPosY(), this.world);
             }
+            else{
+                world.printMessage("new "+ this.getName()+" was born (" +this.getPosX()+", "+this.getPosY()+")",0);
+            }
         }
         else{
             if(this.getStrength()<=otherOrganism.getStrength()){
-                this.world.printMessage(otherOrganism.getName() + "kills"+this.getName() + "(" + this.getPosX()+", "+this.getPosY()+")", 0);
+                this.world.printMessage(otherOrganism.getName() + " kills "+this.getName() + "(" + this.getPosX()+", "+this.getPosY()+")", 0);
                 this.world.removeOrganism(this);
             }
             else if (this.getStrength()>otherOrganism.getStrength()){
-                this.world.printMessage(this.getName() +  "kills"+otherOrganism.getName() +"(" + this.getPosX()+", "+this.getPosY()+")", 0);
+                this.world.printMessage(this.getName() +  " kills "+otherOrganism.getName() +"(" + this.getPosX()+", "+this.getPosY()+")", 0);
                 this.world.removeOrganism(otherOrganism);
             }
         }

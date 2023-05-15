@@ -20,4 +20,8 @@ public class Sheep extends Animal{
     public Color color() {
         return Color.CYAN;
     }
+    @Override
+    public String getName() {
+        return "Sheep";
+    }
 }

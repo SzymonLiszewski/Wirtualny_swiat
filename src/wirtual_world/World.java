@@ -100,6 +100,8 @@ public class World {
         organisms[organism.getPosX()][organism.getPosY()] = null;
     };
     public void printMessage(String msg, int newTurn){
+        System.out.println(msg);
+        System.out.println("\n");
         //add code
     };
     public int isHumanAlive = 1;

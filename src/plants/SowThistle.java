@@ -38,4 +38,8 @@ public class SowThistle extends Plant{
     public Color color() {
         return Color.MAGENTA;
     }
+    @Override
+    public String getName() {
+        return "SowThistle";
+    }
 }

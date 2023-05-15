@@ -17,4 +17,8 @@ public class PineBorscht extends Plant{
     public Color color() {
         return Color.PINK;
     }
+    @Override
+    public String getName() {
+        return "PineBorscht";
+    }
 }

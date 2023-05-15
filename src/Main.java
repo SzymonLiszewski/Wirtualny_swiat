@@ -1,8 +1,9 @@
 import java.awt.event.*;
+import java.util.concurrent.ThreadLocalRandom;
 import javax.swing.*;
 
-import animals.Sheep;
-import animals.Wolf;
+import animals.*;
+import plants.*;
 import wirtual_world.*;
 class text extends JFrame implements ActionListener {
     // JTextField
@@ -47,9 +48,21 @@ class text extends JFrame implements ActionListener {
     }
     public void createWorld(int x, int y){
         World world = new World(x,y);
+        int posX, posY;
+        for (int i=0;i<4;i++){
+            world.newOrganism(new Antelope(ThreadLocalRandom.current().nextInt(0, x),ThreadLocalRandom.current().nextInt(0, y),world));
+            world.newOrganism(new Fox(ThreadLocalRandom.current().nextInt(0, x),ThreadLocalRandom.current().nextInt(0, y),world));
+            world.newOrganism(new Sheep(ThreadLocalRandom.current().nextInt(0, x),ThreadLocalRandom.current().nextInt(0, y),world));
+            world.newOrganism(new Turtle(ThreadLocalRandom.current().nextInt(0, x),ThreadLocalRandom.current().nextInt(0, y),world));
+            world.newOrganism(new Wolf(ThreadLocalRandom.current().nextInt(0, x),ThreadLocalRandom.current().nextInt(0, y),world));
+            world.newOrganism(new Grass(ThreadLocalRandom.current().nextInt(0, x),ThreadLocalRandom.current().nextInt(0, y),world));
+            world.newOrganism(new Guarana(ThreadLocalRandom.current().nextInt(0, x),ThreadLocalRandom.current().nextInt(0, y),world));
+            world.newOrganism(new PineBorscht(ThreadLocalRandom.current().nextInt(0, x),ThreadLocalRandom.current().nextInt(0, y),world));
+            world.newOrganism(new SowThistle(ThreadLocalRandom.current().nextInt(0, x),ThreadLocalRandom.current().nextInt(0, y),world));
+            world.newOrganism(new WolfBerries(ThreadLocalRandom.current().nextInt(0, x),ThreadLocalRandom.current().nextInt(0, y),world));
+        }
         world.newOrganism(new Wolf(3,3,world));
-        world.newOrganism(new Wolf(5,8,world));
-        world.newOrganism(new Sheep(10,8,world));
+
         world.drawWorld();
 
     }
