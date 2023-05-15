@@ -1,5 +1,7 @@
 package wirtual_world;
 
+import java.awt.*;
+
 public abstract class Organism {
     protected int  strength;
 protected int initiative;
@@ -53,4 +55,5 @@ protected World world;
     abstract public void collision(Organism otherOrganism);
     abstract public void draw();
     abstract public String getName();
+    abstract public Color color();
 }
