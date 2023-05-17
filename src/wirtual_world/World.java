@@ -1,11 +1,19 @@
 package wirtual_world;
 
+import animals.*;
+import plants.*;
 import graphics.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
+import java.util.Scanner;
 
 public class World {
     public static final int SIZE = 30;
@@ -46,16 +54,17 @@ public class World {
             this.addOrganism(new_organisms.get(i));
         }
         new_organisms.clear();
-        if (getSpecialAbilityTimer()==0&&getCooldown()>0){
+        if (getSpecialAbilityTimer()==0&&getCooldown()>0&&getSpecialAbility()!=1){
             this.setCooldown(this.getCooldown()-1);
-        }
-        if (getSpecialAbilityTimer()<5 && getSpecialAbility()==1) {
-            this.setSpecialAbilityTimer(this.getSpecialAbilityTimer() + 1);
         }
         if (getSpecialAbilityTimer()==5){
             this.setSpecialAbility(0);
             this.setSpecialAbilityTimer(0);
         }
+        if (getSpecialAbilityTimer()<5 && getSpecialAbility()==1) {
+            this.setSpecialAbilityTimer(this.getSpecialAbilityTimer() + 1);
+        }
+
         //add code
     };
     public void drawWorld(){
@@ -167,5 +176,92 @@ public class World {
 
     public void setSpecialAbilityTimer(int specialAbilityTimer) {
         SpecialAbilityTimer = specialAbilityTimer;
+    }
+    public void save() throws IOException {
+        try {
+            File myObj = new File("save.txt");
+            if (myObj.createNewFile()) {
+                System.out.println("File created: " + myObj.getName());
+            } else {
+                System.out.println("File already exists.");
+            }
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+        try {
+            FileWriter myWriter = new FileWriter("save.txt");
+            myWriter.write(this.sizeX+"\n"+this.sizeY+"\n"+this.specialAbility+"\n"+this.Cooldown+"\n"+this.SpecialAbilityTimer+"\n");
+            for (int i=0;i<organisms_ordered.size();i++){
+                myWriter.write(organisms_ordered.get(i).getName()+" "+organisms_ordered.get(i).getPosX()+" "+organisms_ordered.get(i).getPosY()+"\n");
+            }
+            myWriter.close();
+            System.out.println("Successfully wrote to the file.");
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+    }
+    public void load(){
+        try {
+            File myObj = new File("save.txt");
+            Scanner myReader = new Scanner(myObj);
+            this.sizeX = Integer.parseInt(myReader.nextLine());
+            this.sizeY = Integer.parseInt(myReader.nextLine());
+            this.specialAbility = Integer.parseInt(myReader.nextLine());
+            this.Cooldown = Integer.parseInt(myReader.nextLine());
+            this.SpecialAbilityTimer = Integer.parseInt(myReader.nextLine());
+            this.organisms_ordered.clear();
+            this.new_organisms.clear();
+            for (int i=0;i<sizeX;i++){
+                for (int j=0;j<sizeY;j++){
+                    this.organisms[i][j]=null;
+                }
+            }
+            while (myReader.hasNextLine()) {
+                String data = myReader.nextLine();
+                String[] dataarr = data.split(" ");
+                if (Objects.equals(dataarr[0], "Antelope")){
+                    this.newOrganism(new Antelope(Integer.parseInt(dataarr[1]),Integer.parseInt(dataarr[2]),this));
+                }
+                if (Objects.equals(dataarr[0], "Fox")){
+                    this.newOrganism(new Fox(Integer.parseInt(dataarr[1]),Integer.parseInt(dataarr[2]),this));
+                }
+                if (Objects.equals(dataarr[0], "Human")){
+                    this.newOrganism(new Human(Integer.parseInt(dataarr[1]),Integer.parseInt(dataarr[2]),this));
+                }
+                if (Objects.equals(dataarr[0], "Sheep")){
+                    this.newOrganism(new Sheep(Integer.parseInt(dataarr[1]),Integer.parseInt(dataarr[2]),this));
+                }
+                if (Objects.equals(dataarr[0], "Turtle")){
+                    this.newOrganism(new Turtle(Integer.parseInt(dataarr[1]),Integer.parseInt(dataarr[2]),this));
+                }
+                if (Objects.equals(dataarr[0], "Wolf")){
+                    this.newOrganism(new Wolf(Integer.parseInt(dataarr[1]),Integer.parseInt(dataarr[2]),this));
+                }
+                if (Objects.equals(dataarr[0], "Grass")){
+                    this.newOrganism(new Grass(Integer.parseInt(dataarr[1]),Integer.parseInt(dataarr[2]),this));
+                }
+                if (Objects.equals(dataarr[0], "Guarana")){
+                    this.newOrganism(new Guarana(Integer.parseInt(dataarr[1]),Integer.parseInt(dataarr[2]),this));
+                }
+                if (Objects.equals(dataarr[0], "PineBorscht")){
+                    this.newOrganism(new PineBorscht(Integer.parseInt(dataarr[1]),Integer.parseInt(dataarr[2]),this));
+                }
+                if (Objects.equals(dataarr[0], "SowThistle")){
+                    this.newOrganism(new SowThistle(Integer.parseInt(dataarr[1]),Integer.parseInt(dataarr[2]),this));
+                }
+                if (Objects.equals(dataarr[0], "WolfBerries")){
+                    this.newOrganism(new WolfBerries(Integer.parseInt(dataarr[1]),Integer.parseInt(dataarr[2]),this));
+                }
+            }
+            //this.makeTurn(0);
+            myReader.close();
+           // f.dispose();
+            this.update();
+        } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
     }
 }

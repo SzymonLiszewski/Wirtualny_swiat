@@ -7,6 +7,7 @@ import wirtual_world.World;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
 
 public class Screen extends JPanel implements ActionListener, KeyListener, MouseListener {
     private Color color;
@@ -55,6 +56,7 @@ public class Screen extends JPanel implements ActionListener, KeyListener, Mouse
 
     @Override
     public void keyPressed(KeyEvent e) {
+        //System.out.println(e.getKeyCode());
         if (e.getKeyCode()==38){//up
             world.makeTurn(1);
         }
@@ -67,13 +69,24 @@ public class Screen extends JPanel implements ActionListener, KeyListener, Mouse
         if (e.getKeyCode()==37){//left
             world.makeTurn(4);
         }
-        if (e.getKeyCode()==32){//left
+        if (e.getKeyCode()==32){//space
             if (world.getCooldown() == 0) {
                 world.printMessage("Special Ability activated", 0);
                 world.setSpecialAbility(1);
+                world.setSpecialAbilityTimer(1);
                 world.setCooldown(5);
             }
         }
+        if (e.getKeyCode()==83){
+            try {
+                world.save();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        }//s
+        if (e.getKeyCode()==76){
+            world.load();
+        }//l
         world.update();
     }
 
