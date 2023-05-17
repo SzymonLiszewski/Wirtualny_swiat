@@ -42,4 +42,9 @@ public class SowThistle extends Plant{
     public String getName() {
         return "SowThistle";
     }
+    @Override
+    public String emoji(){
+
+        return "🌱";
+    };
 }

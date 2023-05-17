@@ -36,4 +36,9 @@ public class Guarana extends Plant{
             }
         }
     }
+    @Override
+    public String emoji(){
+
+        return "☘️";
+    };
 }

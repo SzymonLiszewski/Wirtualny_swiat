@@ -22,5 +22,9 @@ public class WolfBerries extends Plant{
     public String getName() {
         return "Wolfberries";
     }
+    @Override
+    public String emoji(){
 
+        return "🫐";
+    };
 }

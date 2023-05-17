@@ -73,4 +73,9 @@ public class Antelope extends Animal{
     public String getName() {
         return "Antelope";
     }
+    @Override
+    public String emoji(){
+
+        return "🦌";
+    };
 }

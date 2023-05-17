@@ -23,4 +23,9 @@ public class Grass extends Plant{
     public String getName() {
         return "Grass";
     }
+    @Override
+    public String emoji(){
+
+        return "🌿";
+    };
 }

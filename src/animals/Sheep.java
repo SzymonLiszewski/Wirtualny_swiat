@@ -24,4 +24,9 @@ public class Sheep extends Animal{
     public String getName() {
         return "Sheep";
     }
+    @Override
+    public String emoji(){
+
+        return "🐑";
+    };
 }

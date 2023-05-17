@@ -76,4 +76,9 @@ public class Turtle extends Animal{
     public String getName() {
         return "Turtle";
     }
+    @Override
+    public String emoji(){
+
+        return "🐢";
+    };
 }

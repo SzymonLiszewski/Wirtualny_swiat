@@ -21,4 +21,9 @@ public class PineBorscht extends Plant{
     public String getName() {
         return "PineBorscht";
     }
+    @Override
+    public String emoji(){
+
+        return "🌾";
+    };
 }

@@ -1,27 +1,18 @@
 package graphics;
-import wirtual_world.*;
-import animals.*;
+
+import wirtual_world.World;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class Board extends JPanel implements KeyListener, ActionListener {
+public class logs extends JPanel implements KeyListener, ActionListener {
     private World world;
-    public Board(World w){
+    public logs(World w){
         world = w;
         repaint();
-    }
-    public void paint (Graphics g){
-        super.paint(g);
-        legend(g);
-    }
-    public void legend(Graphics g){
-       // g.setColor(Color.red);
-        // g.fillRect(0,0,10,10);
     }
     @Override
     public void actionPerformed(ActionEvent e) {

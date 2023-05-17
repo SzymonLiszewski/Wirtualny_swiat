@@ -30,6 +30,10 @@ public abstract class Animal extends Organism {
     public String getName(){
         return "A";
     };
+    @Override
+    public String emoji(){
+        return "A";
+    };
     public int findPlace(int x, int y, World world){
         if (x+1 < world.getSizeX() && world.getOrganism(x+1,y) == null){
             this.makeCopy(x+1, y, world);

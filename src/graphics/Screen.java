@@ -32,12 +32,13 @@ public class Screen extends JPanel implements ActionListener, KeyListener, Mouse
         for (int i=0;i<world.getSizeX();i++){
             for (int j=0;j<world.getSizeY();j++){
                 g.setColor(Color.BLACK);
-                g.drawRect(i*20,j*20,20,20);
+                g.drawRect(i*World.SIZE,j*World.SIZE,World.SIZE,World.SIZE);
                 if (organisms[i][j]!=null) {
                     g.setColor(organisms[i][j].color());
-                    g.fillRect(i * 20, j * 20, 20, 20);
+                    g.fillRect(i * World.SIZE, j * World.SIZE, World.SIZE, World.SIZE);
                     g.setColor(Color.BLACK);
-                    g.drawString("😊",i * 20+5, j * 20+15);
+                    g.setFont(new Font(Font.SERIF, Font.PLAIN,30));
+                    g.drawString(organisms[i][j].emoji(),i * World.SIZE, j * World.SIZE+World.SIZE);
                 }
             }
         }
@@ -65,6 +66,13 @@ public class Screen extends JPanel implements ActionListener, KeyListener, Mouse
         }
         if (e.getKeyCode()==37){//left
             world.makeTurn(4);
+        }
+        if (e.getKeyCode()==32){//left
+            if (world.getCooldown() == 0) {
+                world.printMessage("Special Ability activated", 0);
+                world.setSpecialAbility(1);
+                world.setCooldown(5);
+            }
         }
         world.update();
     }
