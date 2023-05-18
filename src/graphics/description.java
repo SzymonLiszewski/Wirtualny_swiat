@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class description extends JPanel implements KeyListener, ActionListener {
+public class description extends JPanel implements KeyListener, ActionListener{
     private World world;
     public description(World w){
         world = w;
@@ -83,6 +83,12 @@ public class description extends JPanel implements KeyListener, ActionListener {
         g.setColor(Color.BLACK);
         g.setFont(new Font(Font.SERIF, Font.PLAIN,30));
         g.drawString(new WolfBerries(0,0,world).emoji()+" WolfBerries",0, World.SIZE*11);
+
+        for (int i=0;i<world.messages.size();i++){
+            g.setColor(Color.BLACK);
+            g.setFont(new Font(Font.SERIF, Font.PLAIN,20));
+            g.drawString(world.messages.get(i),200, world.SIZE* (i+1));
+        }
     }
 
     @Override

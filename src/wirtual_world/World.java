@@ -25,6 +25,7 @@ public class World {
     private List<Organism> organisms_ordered = new LinkedList<>();
     private List<Organism> new_organisms = new LinkedList<>();
     private Organism[][] organisms;
+    public List<String> messages = new LinkedList<>();
     private JFrame f = new JFrame();
     public World(int sizeX, int sizeY){
         this.sizeX = sizeX;
@@ -40,6 +41,7 @@ public class World {
         this.SpecialAbilityTimer = 0;
     }
     public void makeTurn(int human_move){
+        messages.clear();
         printMessage("Cooldown: "+getCooldown(),0);
         printMessage("czas trwania: "+getSpecialAbilityTimer(),0);
         for (int i=0; i<organisms_ordered.size();i++){
@@ -70,9 +72,9 @@ public class World {
     public void drawWorld(){
         //JFrame f;
         //f = new JFrame();
-        f.setSize(this.sizeX*(SIZE+1)*2, this.sizeY*(SIZE+2));
+        f.setSize(this.sizeX*(SIZE+1)*2, (this.sizeY+2)*(SIZE));
         //f.setLayout(null);//using no layout managers
-        f.setLayout(new GridLayout(1,1,0,0));
+        f.setLayout(new GridLayout(1,3,0,0));
         description b = new description(this);
         Screen s = new Screen(f, this, organisms, sizeX, sizeY);
         f.add(s);
@@ -133,6 +135,7 @@ public class World {
         System.out.println(msg);
         System.out.println("\n");
         //add code
+        messages.add(msg);
     };
     public int isHumanAlive = 1;
     public int getSizeX() {
