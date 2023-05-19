@@ -1,6 +1,7 @@
 package graphics;
 
-import animals.Wolf;
+import animals.*;
+import plants.*;
 import wirtual_world.Organism;
 import wirtual_world.World;
 
@@ -107,7 +108,102 @@ public class Screen extends JPanel implements ActionListener, KeyListener, Mouse
 
     @Override
     public void mouseReleased(MouseEvent e) {
+        JPopupMenu popupMenu = new JPopupMenu();
+        JMenuItem menuItem1 = new JMenuItem("Antelope");
+        JMenuItem menuItem2 = new JMenuItem("Fox");
+        JMenuItem menuItem3 = new JMenuItem("Sheep");
+        JMenuItem menuItem4 = new JMenuItem("Turtle");
+        JMenuItem menuItem5 = new JMenuItem("Wolf");
+        JMenuItem menuItem6 = new JMenuItem("Grass");
+        JMenuItem menuItem7 = new JMenuItem("Guarana");
+        JMenuItem menuItem8 = new JMenuItem("PineBorscht");
+        JMenuItem menuItem9 = new JMenuItem("SowThistle");
+        JMenuItem menuItem10 = new JMenuItem("WolfBerries");
 
+        popupMenu.add(menuItem1);
+        popupMenu.add(menuItem2);
+        popupMenu.add(menuItem3);
+        popupMenu.add(menuItem4);
+        popupMenu.add(menuItem5);
+        popupMenu.add(menuItem6);
+        popupMenu.add(menuItem7);
+        popupMenu.add(menuItem8);
+        popupMenu.add(menuItem9);
+        popupMenu.add(menuItem10);
+
+        menuItem1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e2) {
+                world.newOrganism(new Antelope((int)Math.floor(e.getX()/world.SIZE),(int)Math.floor(e.getY()/world.SIZE),world));
+                world.update();
+            }
+        });
+        menuItem2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e2) {
+                world.newOrganism(new Fox((int)Math.floor(e.getX()/world.SIZE),(int)Math.floor(e.getY()/world.SIZE),world));
+                world.update();
+            }
+        });
+        menuItem3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e2) {
+                world.newOrganism(new Sheep((int)Math.floor(e.getX()/world.SIZE),(int)Math.floor(e.getY()/world.SIZE),world));
+                world.update();
+            }
+        });
+        menuItem4.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e2) {
+                world.newOrganism(new Turtle((int)Math.floor(e.getX()/world.SIZE),(int)Math.floor(e.getY()/world.SIZE),world));
+                world.update();
+            }
+        });
+        menuItem5.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e2) {
+                world.newOrganism(new Wolf((int)Math.floor(e.getX()/world.SIZE),(int)Math.floor(e.getY()/world.SIZE),world));
+                world.update();
+            }
+        });
+        menuItem6.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e2) {
+                world.newOrganism(new Grass((int)Math.floor(e.getX()/world.SIZE),(int)Math.floor(e.getY()/world.SIZE),world));
+                world.update();
+            }
+        });
+        menuItem7.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e2) {
+                world.newOrganism(new Guarana((int)Math.floor(e.getX()/world.SIZE),(int)Math.floor(e.getY()/world.SIZE),world));
+                world.update();
+            }
+        });
+        menuItem8.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e2) {
+                world.newOrganism(new PineBorscht((int)Math.floor(e.getX()/world.SIZE),(int)Math.floor(e.getY()/world.SIZE),world));
+                world.update();
+            }
+        });
+        menuItem9.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e2) {
+                world.newOrganism(new SowThistle((int)Math.floor(e.getX()/world.SIZE),(int)Math.floor(e.getY()/world.SIZE),world));
+                world.update();
+            }
+        });
+        menuItem10.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e2) {
+                world.newOrganism(new WolfBerries((int)Math.floor(e.getX()/world.SIZE),(int)Math.floor(e.getY()/world.SIZE),world));
+                world.update();
+            }
+        });
+
+
+        popupMenu.show(e.getComponent(), e.getX(), e.getY());
     }
 
     @Override
