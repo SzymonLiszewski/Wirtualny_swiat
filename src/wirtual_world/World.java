@@ -26,6 +26,7 @@ public class World {
     private List<Organism> new_organisms = new LinkedList<>();
     private Organism[][] organisms;
     public List<String> messages = new LinkedList<>();
+    public int isHumanAlive = 1;
     private JFrame f = new JFrame();
     public World(int sizeX, int sizeY){
         this.sizeX = sizeX;
@@ -41,32 +42,32 @@ public class World {
         this.SpecialAbilityTimer = 0;
     }
     public void makeTurn(int human_move){
-        messages.clear();
-        printMessage("Cooldown: "+getCooldown(),0);
-        printMessage("czas trwania: "+getSpecialAbilityTimer(),0);
-        for (int i=0; i<organisms_ordered.size();i++){
-            if (organisms_ordered.get(i).getName()=="Human") {
-                organisms_ordered.get(i).human_action(human_move);
+        if (isHumanAlive==1) {
+            messages.clear();
+            printMessage("Cooldown: " + getCooldown(), 0);
+            printMessage("czas trwania: " + getSpecialAbilityTimer(), 0);
+            for (int i = 0; i < organisms_ordered.size(); i++) {
+                if (organisms_ordered.get(i).getName() == "Human") {
+                    organisms_ordered.get(i).human_action(human_move);
+                } else {
+                    organisms_ordered.get(i).action();
+                }
             }
-            else{
-                organisms_ordered.get(i).action();
+            for (int i = 0; i < new_organisms.size(); i++) {
+                this.addOrganism(new_organisms.get(i));
+            }
+            new_organisms.clear();
+            if (getSpecialAbilityTimer() == 0 && getCooldown() > 0 && getSpecialAbility() != 1) {
+                this.setCooldown(this.getCooldown() - 1);
+            }
+            if (getSpecialAbilityTimer() == 5) {
+                this.setSpecialAbility(0);
+                this.setSpecialAbilityTimer(0);
+            }
+            if (getSpecialAbilityTimer() < 5 && getSpecialAbility() == 1) {
+                this.setSpecialAbilityTimer(this.getSpecialAbilityTimer() + 1);
             }
         }
-        for (int i=0;i<new_organisms.size();i++){
-            this.addOrganism(new_organisms.get(i));
-        }
-        new_organisms.clear();
-        if (getSpecialAbilityTimer()==0&&getCooldown()>0&&getSpecialAbility()!=1){
-            this.setCooldown(this.getCooldown()-1);
-        }
-        if (getSpecialAbilityTimer()==5){
-            this.setSpecialAbility(0);
-            this.setSpecialAbilityTimer(0);
-        }
-        if (getSpecialAbilityTimer()<5 && getSpecialAbility()==1) {
-            this.setSpecialAbilityTimer(this.getSpecialAbilityTimer() + 1);
-        }
-
         //add code
     };
     public void drawWorld(){
@@ -137,7 +138,6 @@ public class World {
         //add code
         messages.add(msg);
     };
-    public int isHumanAlive = 1;
     public int getSizeX() {
         return sizeX;
     }
