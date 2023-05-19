@@ -43,7 +43,7 @@ public class Fox extends Animal{
 
     @Override
     public Color color() {
-        return null;
+        return Color.ORANGE;
     }
     @Override
     public String getName() {
@@ -52,6 +52,6 @@ public class Fox extends Animal{
     @Override
     public String emoji(){
 
-        return "🦊";
+        return "🐕";
     };
 }

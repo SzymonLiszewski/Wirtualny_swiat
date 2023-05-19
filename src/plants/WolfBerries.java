@@ -25,6 +25,6 @@ public class WolfBerries extends Plant{
     @Override
     public String emoji(){
 
-        return "🫐";
+        return "🍒";
     };
 }

@@ -29,6 +29,6 @@ public class Wolf extends Animal {
     @Override
     public String emoji(){
 
-        return "🐩";
+        return "🦊";
     };
 }

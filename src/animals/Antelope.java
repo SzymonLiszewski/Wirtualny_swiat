@@ -67,7 +67,7 @@ public class Antelope extends Animal{
 
     @Override
     public Color color() {
-        return null;
+        return Color.yellow;
     }
     @Override
     public String getName() {
