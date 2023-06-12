@@ -13,4 +13,5 @@ space - human special ability
 
 
 # preview
-![obraz_2023-06-12_114905747](https://github.com/ATURYEN/Wirtualny_swiat/assets/110538257/38ed8d76-515f-40f0-bfde-55a20af3a759)
+
+![Zrzut ekranu 2023-06-12 114841](https://github.com/SzymonLiszewski/Wirtualny_swiat/assets/110538257/4f5f1dfb-aec8-4f7b-bd36-30d73334aa5a)
